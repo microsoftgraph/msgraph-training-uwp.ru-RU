@@ -4,7 +4,7 @@
 
 ## <a name="lab---build-uwp-apps-with-the-microsoft-graph-net-sdk"></a>Лаборатория: построение приложений UWP с помощью Microsoft Graph .NET SDK
 
-В этой лабораторной работе вы создадите приложение UWP, используя конечную точку проверки подлинности Azure AD v2 и библиотеку проверки поДлинности Microsoft (MSAL) для доступа к данным в Office 365 с помощью Microsoft Graph.
+В этой лабораторной работе вы создадите приложение UWP, используя конечную точку проверки подлинности Azure AD v2 и библиотеку проверки подлинности Microsoft (MSAL) для доступа к данным в Office 365 с помощью Microsoft Graph.
 
 - [Руководство по Microsoft Graph с UWP](https://docs.microsoft.com/graph/training/uwp-tutorial)
 
@@ -13,7 +13,7 @@
 Каталог [демонстрации](./Demos) в этом репозитории содержит копии проекта, которые соответствуют выполнению отдельных разделов руководства. Если вы только захотите демонстрацию определенного раздела руководства, вы можете начать с версии, описанной в предыдущем разделе.
 
 - [01-Create-App](Demos/01-create-app): завершено [Создание веб-приложения для универсальной платформы Windows (UWP)](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=1)
-- [02 – Add $ AAD – auth](Demos/02-add-aad-auth): завершено [Добавление проверки поДлинности для Azure AD](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=3)
+- [02 – Add $ AAD – auth](Demos/02-add-aad-auth): завершено [Добавление проверки подлинности для Azure AD](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=3)
 - [03 – Add – msgraph](Demos/03-add-msgraph): Completed [Получение данных календаря](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=4)
 
 ## <a name="completed-sample"></a>Пример завершен
@@ -30,13 +30,13 @@
 
 | Роли                | Authors (s)                                                        |
 | -------------------- | ---------------------------------------------------------------- |
-| Лабораторные руководства и слайды | Эндрю Коннелл (Майкрософт MVP, Воитанос)@andrewconnell          |
-| КОНТРОЛЯ                   | Юлия Турнер (Майкрософт MVP, Sympraxis консультационные услуги)@juliemturner |
-| Спонсор и поддержка    | Инаные (Майкрософт)@yina_arenas                             |
+| Лабораторные руководства и слайды | Эндрю Коннелл (Майкрософт MVP, Воитанос) @andrewconnell          |
+| КОНТРОЛЯ                   | Юлия Турнер (Майкрософт MVP, Sympraxis консультационные услуги) @juliemturner |
+| Спонсор и поддержка    | Ина (Майкрософт) @yina_arenas                             |
 
 ## <a name="version-history"></a>Журнал версий
 
-| Версия | Дата               | Comments                                             |
+| Version | Дата               | Comments                                             |
 | ------- | ------------------ | ---------------------------------------------------- |
 | 1.7     | 6 марта 2019 г.      | Обновление содержимого 2019Q3                               |
 | 1.6     | 19 декабря 2018 г.  | Обновление содержимого 2019Q2                               |
