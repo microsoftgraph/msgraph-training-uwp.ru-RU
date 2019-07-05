@@ -1,12 +1,12 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-Откройте Visual Studio и выберите **файл > создать проект >**. В диалоговом окне **Новый проект** выполните следующие действия:
+Откройте Visual Studio и выберите **создать новый проект**. Выберите параметр **пустое приложение (универсальные окна)** , в котором используется C#, а затем нажмите кнопку **Далее**.
 
-1. Выберите **шаблоны > Visual C# > Windows Universal**.
-1. Выберите **пустое приложение (универсальные окна)**.
-1. Введите **Graph — руководство** по имени проекта.
+![Visual Studio 2019 диалоговое окно создания нового проекта](./images/vs-create-new-project.png)
 
-![Visual Studio 2017 диалоговое окно создания нового проекта](./images/vs-newproj-01.png)
+В диалоговом окне **Настройка нового проекта** введите `graph-tutorial` в поле **Название проекта** и нажмите кнопку **создать**.
+
+![Visual Studio 2019 Настройка диалогового окна "создать проект"](./images/vs-configure-new-project.png)
 
 > [!IMPORTANT]
 > Убедитесь, что вы вводите точно такое же имя для проекта Visual Studio, которое указано в этих инструкциях лаборатории. Имя проекта Visual Studio становится частью пространства имен в коде. Код в этих инструкциях зависит от пространства имен, которое соответствует имени проекта Visual Studio, указанного в данных инструкциях. Если вы используете другое имя проекта, код не будет компилироваться, если не настроить все пространства имен в качестве имени проекта Visual Studio, вводимого при создании проекта.
@@ -23,10 +23,10 @@
 Выберите **инструменты > диспетчер пакетов NuGet > консоли диспетчера пакетов**. В консоли диспетчера пакетов введите указанные ниже команды.
 
 ```Powershell
-Install-Package Microsoft.Toolkit.Uwp.Ui.Controls
-Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.DataGrid
-Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.Graph
-Install-Package Microsoft.Graph
+Install-Package Microsoft.Toolkit.Uwp.Ui.Controls -Version 5.1.1
+Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.DataGrid -Version 5.1.0
+Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.Graph -Version 5.1.0
+Install-Package Microsoft.Graph -Version 1.16.0
 ```
 
 ## <a name="design-the-app"></a>Проектирование приложения
@@ -98,19 +98,7 @@ public bool IsAuthenticated { get; set; }
 </StackPanel>
 ```
 
-Теперь разверните **MainPage. XAML** в обозревателе решений и откройте `MainPage.xaml.cs`его. Добавьте следующий код в `MainPage()` конструктор **после** `this.InitializeComponent();` строки.
-
-```cs
-// Initialize auth state to false
-SetAuthState(false);
-
-// Navigate to HomePage.xaml
-RootFrame.Navigate(typeof(HomePage));
-```
-
-При первом запуске приложения выполняется инициализация состояния проверки подлинности на `false` домашнюю страницу и переход на нее.
-
-Добавьте указанную ниже функцию в `MainPage` класс для управления состоянием проверки подлинности.
+Теперь разверните **MainPage. XAML** в обозревателе решений и откройте `MainPage.xaml.cs`его. Добавьте указанную ниже функцию в `MainPage` класс для управления состоянием проверки подлинности.
 
 ```cs
 private void SetAuthState(bool isAuthenticated)
@@ -121,6 +109,18 @@ private void SetAuthState(bool isAuthenticated)
     Calendar.IsEnabled = isAuthenticated;
 }
 ```
+
+Добавьте следующий код в `MainPage()` конструктор **после** `this.InitializeComponent();` строки.
+
+```cs
+// Initialize auth state to false
+SetAuthState(false);
+
+// Navigate to HomePage.xaml
+RootFrame.Navigate(typeof(HomePage));
+```
+
+При первом запуске приложения выполняется инициализация состояния проверки подлинности на `false` домашнюю страницу и переход на нее.
 
 Добавьте следующий обработчик событий для загрузки запрашиваемой страницы, когда пользователь выбирает элемент в представлении навигации.
 

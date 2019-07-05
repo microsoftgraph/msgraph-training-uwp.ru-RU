@@ -6,15 +6,15 @@
 
 В этой лабораторной работе вы создадите приложение UWP, используя конечную точку проверки подлинности Azure AD v2 и библиотеку проверки подлинности Microsoft (MSAL) для доступа к данным в Office 365 с помощью Microsoft Graph.
 
-- [Руководство по Microsoft Graph с UWP](https://docs.microsoft.com/graph/training/uwp-tutorial)
+- [Руководство по Microsoft Graph с UWP](https://docs.microsoft.com/graph/tutorials/uwp)
 
 ## <a name="demos"></a>Демонстрации
 
 Каталог [демонстрации](./Demos) в этом репозитории содержит копии проекта, которые соответствуют выполнению отдельных разделов руководства. Если вы только захотите демонстрацию определенного раздела руководства, вы можете начать с версии, описанной в предыдущем разделе.
 
-- [01-Create-App](Demos/01-create-app): завершено [Создание веб-приложения для универсальной платформы Windows (UWP)](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=1)
-- [02 – Add $ AAD – auth](Demos/02-add-aad-auth): завершено [Добавление проверки подлинности для Azure AD](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=3)
-- [03 – Add – msgraph](Demos/03-add-msgraph): Completed [Получение данных календаря](https://docs.microsoft.com/graph/training/uwp-tutorial?tutorial-step=4)
+- [01-Create-App](Demos/01-create-app): завершено [Создание веб-приложения для универсальной платформы Windows (UWP)](https://docs.microsoft.com/graph/tutorials/uwp?tutorial-step=1)
+- [02 – Add $ AAD – auth](Demos/02-add-aad-auth): завершено [Добавление проверки подлинности для Azure AD](https://docs.microsoft.com/graph/tutorials/uwp?tutorial-step=3)
+- [03 – Add – msgraph](Demos/03-add-msgraph): Completed [Получение данных календаря](https://docs.microsoft.com/graph/tutorials/uwp?tutorial-step=4)
 
 ## <a name="completed-sample"></a>Пример завершен
 
