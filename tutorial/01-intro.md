@@ -5,12 +5,12 @@
 > [!TIP]
 > Если вы предпочитаете просто скачать заполненный учебник, вы можете скачать или клонировать [репозиторий GitHub](https://github.com/microsoftgraph/msgraph-training-uwp).
 
-## <a name="prerequisites"></a>Необходимые условия
+## <a name="prerequisites"></a>Необходимые компоненты
 
-Прежде чем приступить к работе с этим руководством, на компьютере под управлением Windows 10 с включенным [режимом разработчика](https://docs.microsoft.com/windows/uwp/get-started/enable-your-device-for-development)должен быть установлен [Visual Studio](https://visualstudio.microsoft.com/vs/) . Если у вас нет Visual Studio, посетите предыдущую ссылку для получения вариантов загрузки.
+Прежде чем приступить к работе с этим руководством, на компьютере под управлением Windows 10 с [включенным режимом разработчика](https://docs.microsoft.com/windows/uwp/get-started/enable-your-device-for-development)должен быть установлен [Visual Studio](https://visualstudio.microsoft.com/vs/) . Если у вас нет Visual Studio, посетите предыдущую ссылку для получения вариантов загрузки.
 
 > [!NOTE]
-> Это руководство было написано с помощью Visual Studio 2019 версии 16.1.5. Действия, описанные в этом руководстве, могут работать с другими версиями, но не тестировались.
+> Это руководство было написано с помощью Visual Studio 2019 версии 16.4.0. Действия, описанные в этом руководстве, могут работать с другими версиями, но не тестировались.
 
 ## <a name="watch-the-tutorial"></a>Просмотр руководства
 

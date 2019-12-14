@@ -23,10 +23,10 @@
 Выберите **инструменты > диспетчер пакетов NuGet > консоли диспетчера пакетов**. В консоли диспетчера пакетов введите указанные ниже команды.
 
 ```Powershell
-Install-Package Microsoft.Toolkit.Uwp.Ui.Controls -Version 5.1.1
-Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.DataGrid -Version 5.1.0
-Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.Graph -Version 5.1.0
-Install-Package Microsoft.Graph -Version 1.16.0
+Install-Package Microsoft.Toolkit.Uwp.Ui.Controls -Version 6.0.0
+Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.DataGrid -Version 6.0.0
+Install-Package Microsoft.Toolkit.Uwp.Ui.Controls.Graph -Version 6.0.0
+Install-Package Microsoft.Graph -Version 1.20.0
 ```
 
 ## <a name="design-the-app"></a>Проектирование приложения
