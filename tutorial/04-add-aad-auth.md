@@ -1,96 +1,44 @@
 <!-- markdownlint-disable MD002 MD041 -->
 
-В этом упражнении вы будете расширяем приложение из предыдущего упражнения для поддержки проверки подлинности с помощью Azure AD. Это необходимо для получения необходимого маркера доступа OAuth для вызова Microsoft Graph. На этом этапе вы интегрируете элемент управления [аадлогин](https://docs.microsoft.com/dotnet/api/microsoft.toolkit.uwp.ui.controls.graph.aadlogin?view=win-comm-toolkit-dotnet-stable) из [набора инструментов сообщества Windows](https://github.com/Microsoft/WindowsCommunityToolkit) в приложение.
+В этом упражнении вы будете расширяем приложение из предыдущего упражнения для поддержки проверки подлинности с помощью Azure AD. Это необходимо для получения необходимого маркера доступа OAuth для вызова Microsoft Graph. На этом этапе выполняется интеграция элемента управления **логинбуттон** из [элементов управления Windows Graph](https://github.com/windows-toolkit/Graph-Controls) в приложение.
 
-Щелкните правой кнопкой мыши проект **Graph – Tutorial** в обозревателе решений и выберите команду **Добавить > новый элемент..**.. Выберите **файл Resources (. РеСВ)**, назовите файл `OAuth.resw` и нажмите кнопку **добавить**. Когда новый файл откроется в Visual Studio, создайте два ресурса, как показано ниже.
+1. Щелкните правой кнопкой мыши проект **графтуториал** в обозревателе решений и выберите команду **Добавить > новый элемент..**.. Выберите **файл Resources (. РеСВ)**, назовите файл `OAuth.resw` и нажмите кнопку **добавить**. Когда новый файл откроется в Visual Studio, создайте два ресурса, как показано ниже.
 
-- **Имя:** `AppId`, **Value:** идентификатор приложения, созданный на портале регистрации приложений
-- **Имя:** `Scopes`, **Значение:**`User.Read Calendars.Read`
+    - **Name:** `AppId`, **value:** идентификатор приложения, созданный на портале регистрации приложений
+    - **Name:** `Scopes`, **значение:**`User.Read Calendars.Read`
 
-![Снимок экрана: файл OAuth. РеСВ в редакторе Visual Studio](./images/edit-resources-01.png)
+    ![Снимок экрана: файл OAuth. РеСВ в редакторе Visual Studio](./images/edit-resources-01.png)
 
-> [!IMPORTANT]
-> Если вы используете систему управления версиями (например, Git), то теперь мы бы не могли исключить `OAuth.resw` файл из системы управления версиями, чтобы избежать случайной утечки идентификатора приложения.
+    > [!IMPORTANT]
+    > Если вы используете систему управления версиями (например, Git), то теперь мы бы не могли исключить `OAuth.resw` файл из системы управления версиями, чтобы избежать случайной утечки идентификатора приложения.
 
-## <a name="configure-the-aadlogin-control"></a>Настройка элемента управления Аадлогин
+## <a name="configure-the-loginbutton-control"></a>Настройка элемента управления Логинбуттон
 
-Начните с добавления кода для считывания значений из файла ресурсов. Откройте `MainPage.xaml.cs` и добавьте приведенный `using` ниже оператор в начало файла.
+1. Откройте `MainPage.xaml.cs` и добавьте приведенный `using` ниже оператор в начало файла.
 
-```cs
-using Microsoft.Toolkit.Services.MicrosoftGraph;
-```
+    ```csharp
+    using Microsoft.Toolkit.Graph.Providers;
+    ```
 
-Замените строку `RootFrame.Navigate(typeof(HomePage));` указанным ниже кодом.
+1. Замените существующий конструктор приведенным ниже.
 
-```cs
-// Load OAuth settings
-var oauthSettings = Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView("OAuth");
-var appId = oauthSettings.GetString("AppId");
-var scopes = oauthSettings.GetString("Scopes");
+    :::code language="csharp" source="../demo/GraphTutorial/MainPage.xaml.cs" id="ConstructorSnippet":::
 
-if (string.IsNullOrEmpty(appId) || string.IsNullOrEmpty(scopes))
-{
-    Notification.Show("Could not load OAuth Settings from resource file.");
-}
-else
-{
-    // Initialize Graph
-    MicrosoftGraphService.Instance.AuthenticationModel = MicrosoftGraphEnums.AuthenticationModel.V2;
-    MicrosoftGraphService.Instance.Initialize(appId,
-        MicrosoftGraphEnums.ServicesToInitialize.UserProfile,
-        scopes.Split(' '));
+    Этот код загружает параметры из `OAuth.resw` и Инициализирует поставщик MSAL с этими значениями.
 
-    // Navigate to HomePage.xaml
-    RootFrame.Navigate(typeof(HomePage));
-}
-```
+1. Теперь добавьте обработчик события для `ProviderUpdated` события. `ProviderManager` Добавьте к классу `MainPage` следующую функцию:
 
-Этот код загружает параметры из `OAuth.resw` и инициализирует глобальный экземпляр объекта `MicrosoftGraphService` с этими значениями.
+    :::code language="csharp" source="../demo/GraphTutorial/MainPage.xaml.cs" id="ProviderUpdatedSnippet":::
 
-Теперь добавьте обработчик события для `SignInCompleted` события в `AadLogin` элементе управления. Откройте `MainPage.xaml` файл и замените существующий `<graphControls:AadLogin>` элемент приведенным ниже.
+    Это событие инициируется при изменении поставщика или при изменении состояния поставщика.
 
-```xml
-<graphControls:AadLogin x:Name="Login"
-    HorizontalAlignment="Left"
-    View="SmallProfilePhotoLeft"
-    AllowSignInAsDifferentUser="False"
-    SignInCompleted="Login_SignInCompleted"
-    SignOutCompleted="Login_SignOutCompleted"
-    />
-```
+1. В обозревателе решений разверните узел **Homepage. XAML** и откройте `HomePage.xaml.cs`его. Замените существующий конструктор приведенным ниже.
 
-Затем добавьте указанные ниже функции в `MainPage` класс в `MainPage.xaml.cs`файле.
+    :::code language="csharp" source="../demo/GraphTutorial/HomePage.xaml.cs" id="ConstructorSnippet":::
 
-```cs
-private void Login_SignInCompleted(object sender, Microsoft.Toolkit.Uwp.UI.Controls.Graph.SignInEventArgs e)
-{
-    // Set the auth state
-    SetAuthState(true);
-    // Reload the home page
-    RootFrame.Navigate(typeof(HomePage));
-}
+1. Перезапустите приложение и щелкните элемент управления **входом** в верхней части приложения. Когда вы вошли в систему, Пользовательский интерфейс должен измениться, чтобы показать, что вы успешно выполнили вход.
 
-private void Login_SignOutCompleted(object sender, EventArgs e)
-{
-    // Set the auth state
-    SetAuthState(false);
-    // Reload the home page
-    RootFrame.Navigate(typeof(HomePage));
-}
-```
+    ![Снимок экрана приложения после входа](./images/add-aad-auth-01.png)
 
-Наконец, в обозревателе решений разверните узел **Homepage. XAML** и откройте `HomePage.xaml.cs`его. Добавьте следующий код после `this.InitializeComponent();` строки.
-
-```cs
-if ((App.Current as App).IsAuthenticated)
-{
-    HomePageMessage.Text = "Welcome! Please use the menu to the left to select a view.";
-}
-```
-
-Перезапустите приложение и щелкните элемент **** управления входом в верхней части приложения. Когда вы вошли в систему, Пользовательский интерфейс должен измениться, чтобы показать, что вы успешно выполнили вход.
-
-![Снимок экрана приложения после входа](./images/add-aad-auth-01.png)
-
-> [!NOTE]
-> `AadLogin` Элемент управления реализует логику сохранения и обновления маркера доступа. Маркеры хранятся в безопасном хранилище и обновляются по мере необходимости.
+    > [!NOTE]
+    > `ButtonLogin` Элемент управления реализует логику сохранения и обновления маркера доступа. Маркеры хранятся в безопасном хранилище и обновляются по мере необходимости.
